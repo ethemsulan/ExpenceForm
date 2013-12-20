@@ -47,6 +47,7 @@ var app = {
 
         console.log('Received Event: ' + id);
         */
+        checkConnection();
         app.getProducts();
         $('#products').bind('change',function(e){
             console.log(e);
@@ -57,6 +58,7 @@ var app = {
             $('#img1').attr('src',prod.ImageUrl);
         });
     },
+    
     productList:null,
     getProducts:function(){
         $.ajax({
