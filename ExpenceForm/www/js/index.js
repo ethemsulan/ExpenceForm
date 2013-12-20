@@ -82,6 +82,29 @@ var app = {
                 console.log("error c",c);
           }
         });
+    },
+    openCamera:function(){
+             var onCamSuccess = function(imageData) {
+                    /* No action required */
+             };
+
+             var onCamFail = function(error) {
+                    /* No action required */
+                    //alert('Kamera kullanılamıyor (' + error.code + ')');
+             };
+             
+             var cameraPopoverHandle = navigator.camera.getPicture(onCamSuccess, onCamFail, {
+                    quality : 25,
+                    allowEdit : false,
+                    sourceType : Camera.PictureSourceType.CAMERA,
+                    destinationType : Camera.DestinationType.DATA_URL,
+                    encodingType : Camera.EncodingType.JPEG,
+                    cameraDirection : Camera.Direction.FRONT,
+                    targetWidth : 80,
+                    targetHeight : 80,
+                    saveToPhotoAlbum : false
+             });
+       
     }
         
 };

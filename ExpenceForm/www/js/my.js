@@ -1,4 +1,5 @@
 function checkConnection() {
+    if (navigator.connection!=undefined) {
     var networkState = navigator.connection.type;
 
     var states = {};
@@ -12,4 +13,5 @@ function checkConnection() {
     states[Connection.NONE]     = 'No network connection';
 
     alert('Connection type: ' + states[networkState]);
+    };
 }
