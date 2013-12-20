@@ -49,6 +49,8 @@ var app = {
         */
         checkConnection();
         app.getProducts();
+        loadMapScript('app.mapLoaded');
+
         $('#products').bind('change',function(e){
             console.log(e);
             console.warn(e.currentTarget.value);
@@ -106,21 +108,52 @@ var app = {
              });
        
     },
-    detectCurrentLocation : function() {
-       var onGeoSuccess = function(position) {
+          detectCurrentLocation : function() {
+             var onGeoSuccess = function(position) {
                     console.log(position);
-                    //var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                    var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                    google.maps.visualRefresh = true;
+
+                    var mapOptions = {
+                           zoom : 13,
+                           center : location,
+                           rotateControl : false,
+                           streetViewControl : false,
+                           mapTypeControl : false,
+                           draggable : true,
+                           mapTypeId : google.maps.MapTypeId.ROADMAP
+                    };
+                    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+                    var currentLocationMarker = new google.maps.Marker({
+                           position : location,
+                           map : map,
+                           bounds : false,
+                           title : 'Buradasınız',
+                           //icon : image,
+                           //shape : shape,
+                           optimized : false
+                           //animation : google.maps.Animation.BOUNCE
+                    });
              };
 
              var onGeoFail = function(error) {
                     console.log(error);
              };
-                           
+
              navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoFail, {
                     timeout : 3000,
                     enableHighAccuracy : true
              });
+       },
+
+       mapLoaded : function() {
+             console.log("mapLoaded");
+             app.detectCurrentLocation();
        }
+
 
 
 };
