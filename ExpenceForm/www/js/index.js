@@ -37,6 +37,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+        /*
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -45,5 +46,40 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        */
+        app.getProducts();
+        $('#products').bind('change',function(e){
+            console.log(e);
+            console.warn(e.currentTarget.value);
+            var index=e.currentTarget.selectedIndex-1;
+            var prod=app.productList[index];
+            console.dir(prod);
+            $('#img1').attr('src',prod.ImageUrl);
+        });
+    },
+    productList:null,
+    getProducts:function(){
+        $.ajax({
+          url: "http://cosmeticamobile.com/Announcements.ashx",
+          dataType:"jsonp",
+          success:function(a,b,c){
+              app.productList=a;
+              for (var i=0; i < a.length; i++) {
+                
+                var o = new Option(a[i].Description,a[i].ID);
+              $('#products').append(o);
+              };
+              
+              console.log("error a",a);
+               console.log("error b",b);
+                console.log("error c",c);
+          },
+          error:function(a,b,c){
+              console.log("error a",a);
+              console.log("error b",b);
+                console.log("error c",c);
+          }
+        });
     }
+        
 };
