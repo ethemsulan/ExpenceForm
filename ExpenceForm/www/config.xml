@@ -56,5 +56,6 @@
     <access origin="http://127.0.0.1*" />
     <access origin="http://cosmeticamobile.com*" />
     
+    <plugin name="camera" value="org.apache.cordova.CameraLauncher" />
 
 </widget>
