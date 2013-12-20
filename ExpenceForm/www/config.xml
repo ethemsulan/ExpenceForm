@@ -52,5 +52,5 @@
     <gap:platform name="ios" />
     
     <access origin="http://127.0.0.1*" />
-    <access origin="http://cosmeticamobile.com*">
+    <access origin="http://cosmeticamobile.com*" />
 </widget>
