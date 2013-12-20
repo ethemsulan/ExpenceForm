@@ -56,5 +56,5 @@
     <access origin="http://127.0.0.1*" />
     <access origin="http://cosmeticamobile.com*" />
     
-    <gap:plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+    <gap:plugin name="camera" value="org.apache.cordova.CameraLauncher" />
 </widget>
